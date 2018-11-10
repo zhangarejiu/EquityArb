@@ -130,6 +130,7 @@ def back_test(pair):
     cum_rets.index = pd.to_datetime(df1['Date'])
     plt.plot(cum_rets[bestZ])
     plt.title("1 Year {} against {} Returns with {} Z".format(pair[0], pair[1], bestZ[8:11]))
+    plt.savefig("{} {}.png".format(pair[0], pair[1]))
     plt.show()
     cumRets_1 = cum_rets['cumRets_1.0']
     cum_rets.drop(labels=[i for i in cum_rets.columns if i != bestZ], inplace=True, axis=1)
@@ -137,7 +138,7 @@ def back_test(pair):
         cum_rets = cum_rets.join(pd.DataFrame(cumRets_1))
     cum_rets = cum_rets.join(df1['Date'])
     try:
-        cum_rets.to_csv("Cumulative_Returns.csv")
+        cum_rets.to_csv("%s %s Cumulative_Returns.csv" % (pair[0], pair[1]))
         print("Cumulative Returns CSV created.")
     except:
         print("Unable to save CSV.")
