@@ -69,7 +69,7 @@ def back_test(pair):
     zEntries = np.arange(start=0.5,stop=2.5,step=0.1)
     exitZscore = 0
 
-    
+    cum_rets = pd.DataFrame()
     for z in zEntries:
         df1['long entry'] = ((df1.signal < -1.0 * z) & (df1.signal.shift(1) > -1.0 * z))
         df1['long exit'] = ((df1.signal > - exitZscore) & (df1.signal.shift(1) < - exitZscore))
