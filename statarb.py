@@ -8,6 +8,7 @@
 import pandas as pd
 import numpy as np
 from pandas_datareader import data
+from sklearn.linear_model import LinearRegression
 
 def get_data():
     symbols = pd.read_csv('~/Desktop/MAFN/Hedge Fund/presentation2/symbols.csv')
