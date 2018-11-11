@@ -9,9 +9,12 @@ import pandas as pd
 import numpy as np
 from pandas_datareader import data
 from sklearn.linear_model import LinearRegression
+from statsmodels.tsa.stattools import coint
 
 def get_data():
     symbols = pd.read_csv('~/Desktop/MAFN/Hedge Fund/presentation2/symbols.csv')
+    # you may need to check the file and add header "ticker" to the column, then run
+    # symbols = pd.read_csv('~/Desktop/MAFN/Hedge Fund/presentation2/symbols.csv')["ticker"].values
     df = pd.DataFrame()
     start = '2010-01-01'
     end = '2018-01-01'
@@ -147,7 +150,7 @@ def back_test(pair):
 
 def process():
     dat = get_data()
-    train, test = test_train_split(dat)
+    train, test = train_test_split(dat)
     pairs = get_pairs(train)
     calculate_signal(train, test, pairs)
     for pair in pairs:
